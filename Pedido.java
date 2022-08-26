@@ -1,39 +1,64 @@
-import java.util.Random;
-import java.lang.Math;
-
-
 public class Pedido {
-    private static boolean temPedido;
     private int tempoGastoEmProcessamento;
     private int tempoNecessarioAoProcessamento;
-    int pedidoid = 0;
+    private int qntdPizzas = 0, qntdPasteis = 0, horaDoPedido = 0, pedidoId = 0;
 
-    public static boolean verificaSeTemPedido(){
-        Random chance = new Random();
-
-
-        double chanceInt = Math.round(chance.nextDouble()*100);
-
-
-        System.out.println("\nChanceInt => " + chanceInt);
-
-        if(99.0 >= chanceInt && chanceInt >= 80.0){
-            return temPedido == true;
-        }else{
-            return temPedido == false;
-        }
+    public Pedido(/*int tempoGastoEmProcessamento, int tempoNecessarioAoProcessamento,*/
+            int pedidoId, int qntdPizzas, int qntdPasteis, int horaDoPedido) {
+        this.tempoGastoEmProcessamento = tempoGastoEmProcessamento;
+        this.tempoNecessarioAoProcessamento = tempoNecessarioAoProcessamento;
+        this.pedidoId = pedidoId;
+        this.qntdPizzas = qntdPizzas;
+        this.qntdPasteis = qntdPasteis;
+        this.horaDoPedido = horaDoPedido;
     }
 
-    public void realizaPedido(boolean verificaSeTemPedido){
-        /*if(verificaSeTemPedido()){
-            for(int i = 0; i <= listaDePedidos.length; i++) {
-                System.out.println(listaDePedidos);
-            }
-        } */
+    public int getTempoGastoEmProcessamento() {
+        return tempoGastoEmProcessamento;
     }
 
-    public Pedido(int id, int qntdPizzas, int qntdPasteis, int horaDoPedido){
-        System.out.println("Pedidoid => " + pedidoid++);
+    public int getTempoNecessarioAoProcessamento() {
+        return tempoNecessarioAoProcessamento;
+    }
+
+    public int getQntdPizzas() {
+        return qntdPizzas;
+    }
+
+    public int getQntdPasteis() {
+        return qntdPasteis;
+    }
+
+    public int getHoraDoPedido() {
+        return horaDoPedido;
+    }
+
+    public int getPedidoId() {
+        return pedidoId;
+    }
+
+    public void setTempoGastoEmProcessamento(int tempoGastoEmProcessamento) {
+        this.tempoGastoEmProcessamento = tempoGastoEmProcessamento;
+    }
+
+    public void setTempoNecessarioAoProcessamento(int tempoNecessarioAoProcessamento) {
+        this.tempoNecessarioAoProcessamento = tempoNecessarioAoProcessamento;
+    }
+
+    public void setQntdPizzas(int qntdPizzas) {
+        this.qntdPizzas = qntdPizzas;
+    }
+
+    public void setQntdPasteis(int qntdPasteis) {
+        this.qntdPasteis = qntdPasteis;
+    }
+
+    public void setHoraDoPedido(int horaDoPedido) {
+        this.horaDoPedido = horaDoPedido;
+    }
+
+    public void setPedidoId(int pedidoId) {
+        this.pedidoId = pedidoId;
     }
 
 }

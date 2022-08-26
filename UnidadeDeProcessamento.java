@@ -9,7 +9,7 @@ public class UnidadeDeProcessamento {
 
     }
 
-    public static boolean temUnidadeDeProcessaentoLivre(){
+    public static boolean temUnidadeDeProcessamentoLivre(){
     return false;
     }
 
