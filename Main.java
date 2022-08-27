@@ -35,7 +35,7 @@ public class Main {
                     } else {
                         System.out.println("Sem novos pedidos");
                         j++;
-                        System.out.println("PASSOU PELO IF == FALSE");
+                        System.out.println("PASSOU PELO IF == FALSE") ;
                     }
                 }
             }

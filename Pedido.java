@@ -1,6 +1,6 @@
 public class Pedido {
     private int tempoGastoEmProcessamento;
-    private int tempoNecessarioAoProcessamento;
+    private int tempoNecessarioAoProcessamento ;
     private int qntdPizzas = 0, qntdPasteis = 0, horaDoPedido = 0, pedidoId = 0;
 
     public Pedido(/*int tempoGastoEmProcessamento, int tempoNecessarioAoProcessamento,*/

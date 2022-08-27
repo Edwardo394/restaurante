@@ -1,7 +1,7 @@
 public class UnidadeDeProcessamento {
 
 
-    public static void ColocaNaFilaDeProcessamento(Pedido P){
+    public static void ColocaNaFilaDeProcessamento(Pedido P) {
 
     }
 
