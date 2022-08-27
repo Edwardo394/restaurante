@@ -1,10 +1,11 @@
 public class Pedido {
     private int tempoGastoEmProcessamento;
-    private int tempoNecessarioAoProcessamento ;
+    private int tempoNecessarioAoProcessamento;
     private int qntdPizzas = 0, qntdPasteis = 0, horaDoPedido = 0, pedidoId = 0;
 
-    public Pedido(/*int tempoGastoEmProcessamento, int tempoNecessarioAoProcessamento,*/
-            int pedidoId, int qntdPizzas, int qntdPasteis, int horaDoPedido) {
+    public Pedido(int tempoGastoEmProcessamento, int tempoNecessarioAoProcessamento,
+                  int pedidoId, int qntdPizzas, int qntdPasteis, int horaDoPedido) {
+
         this.tempoGastoEmProcessamento = tempoGastoEmProcessamento;
         this.tempoNecessarioAoProcessamento = tempoNecessarioAoProcessamento;
         this.pedidoId = pedidoId;
@@ -61,4 +62,14 @@ public class Pedido {
         this.pedidoId = pedidoId;
     }
 
+    public String imprime() {
+        return "Pedido{" +
+                "tempoGastoEmProcessamento=" + tempoGastoEmProcessamento +
+                ", tempoNecessarioAoProcessamento=" + tempoNecessarioAoProcessamento +
+                ", qntdPizzas=" + qntdPizzas +
+                ", qntdPasteis=" + qntdPasteis +
+                ", horaDoPedido=" + horaDoPedido +
+                ", pedidoId=" + pedidoId +
+                '}';
+    }
 }

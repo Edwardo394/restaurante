@@ -3,9 +3,138 @@ import java.util.Scanner;
 import java.lang.Math;
 
 public class Main {
-    public static void main(String[] args) {
-      entradas();
+    public static void main(String[] args) { controle(); new FilaArray(); }
+
+    public static int controle(){
+        int tempo = 0;
+        do {
+            Pedido P;
+            UnidadeDeProcessamento Montadores = null, Fornos = null, Empacotadores = null;
+            P = geraPedido(tempo);
+
+                // Montagem do pedido
+                while (Montadores.temUnidadeDeProcessamentoLivre()) {
+                    Montadores.RetiraPedidoDaFilaDeProcessamento();
+
+                    Montadores.AtribuiPedidoAoProcessadorLivre(P);
+                }
+
+                while (Montadores.temProcessamentoFinalizado(tempo)) {
+                    P = Montadores.ConcluiProcessamento();
+
+                    Fornos.ColocaNaFilaDeProcessamento(P);
+                }
+
+                // Cozimento do pedido
+                while (Fornos.temUnidadeDeProcessamentoLivre()) // Montado??
+                {
+                    Fornos.RetiraPedidoDaFilaDeProcessamento();
+
+                    Fornos.AtribuiPedidoAoProcessadorLivre(P);
+                }
+
+                while (Fornos.temProcessamentoFinalizado(tempo)) // Assado??
+                {
+                    P = Fornos.ConcluiProcessamento();
+
+                    Empacotadores.ColocaNaFilaDeProcessamento(P);
+                }
+
+                // Empacotamento do pedido
+                while (Empacotadores.temUnidadeDeProcessamentoLivre()) {
+                    Empacotadores.RetiraPedidoDaFilaDeProcessamento();
+
+                    Empacotadores.AtribuiPedidoAoProcessadorLivre(P);
+                }
+
+                while (Empacotadores.temProcessamentoFinalizado(tempo)) // Empacotado??
+                {
+                    P = Empacotadores.ConcluiProcessamento();
+
+                    P.imprime(); // relatorio sobre o pedido
+                    // Aqui, deve coletar estatíticas sobre o pedido
+                }
+            tempo++;
+        }
+        while (tempo < 8 * 60);// 8 horas, 60 minutos
+        return 0;
     }
+
+    public static Pedido geraPedido(int tempo){
+        return null;
+    }
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+    Abaixo está o projeto inicial que apresenta bug na hora da construção de um novo pedido.
+    Os metodos comentados foram utilizados para uma reflexão inicial de como trabalhar o seguinte problema
+    https://www.inf.pucrs.br/pinho/AlestI/Trabalhos/T1-2022-2/T1-2022-2-Restaurante.html
+    Não apagados para fins de consultas futuras.
+
 
     public static boolean verificaSeTemPedido(){
         boolean temPedido = false;
@@ -35,7 +164,7 @@ public class Main {
                     } else {
                         System.out.println("Sem novos pedidos");
                         j++;
-                        System.out.println("PASSOU PELO IF == FALSE") ;
+                        System.out.println("PASSOU PELO IF == FALSE");
                     }
                 }
             }
@@ -53,3 +182,4 @@ public class Main {
     }
 
 }
+*/

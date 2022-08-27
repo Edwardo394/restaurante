@@ -1,7 +1,7 @@
 public class UnidadeDeProcessamento {
 
 
-    public static void ColocaNaFilaDeProcessamento(Pedido P) {
+    public static void ColocaNaFilaDeProcessamento(Pedido P){
 
     }
 
@@ -21,8 +21,8 @@ public class UnidadeDeProcessamento {
     return false;
     }
 
-/*    public static Pedido ConcluiProcessamento(){
-
+    public static Pedido ConcluiProcessamento(){
+        return null;
     }
-*/
+
 }
