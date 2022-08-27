@@ -14,23 +14,23 @@ public class Pedido {
         this.horaDoPedido = horaDoPedido;
     }
 
-    public int getTempoGastoEmProcessamento() {
+    public static int getTempoGastoEmProcessamento() {
         return tempoGastoEmProcessamento;
     }
 
-    public int getTempoNecessarioAoProcessamento() {
+    public static int getTempoNecessarioAoProcessamento() {
         return tempoNecessarioAoProcessamento;
     }
 
-    public int getQntdPizzas() {
+    public static int getQntdPizzas() {
         return qntdPizzas;
     }
 
-    public int getQntdPasteis() {
+    public static int getQntdPasteis() {
         return qntdPasteis;
     }
 
-    public int getHoraDoPedido() {
+    public static int getHoraDoPedido() {
         return horaDoPedido;
     }
 

@@ -1,72 +1,91 @@
 import java.util.Random;
 import java.util.Scanner;
 import java.lang.Math;
-
 public class Main {
-    public static void main(String[] args) { controle(); new FilaArray(); }
+    static int numeroDePedidos = 0; //variavel global contadora de pedidos
+    static int num = 1;
+    public static void main(String[] args) {
+        controle();
+        new FilaArray();
+    }
 
-    public static int controle(){
+    public static int controle() {
         int tempo = 0;
         do {
-            Pedido P;
-            UnidadeDeProcessamento Montadores = null, Fornos = null, Empacotadores = null;
+            Pedido P = null;
+            UnidadeDeProcessamento Montadores = new UnidadeDeProcessamento(P);
+            UnidadeDeProcessamento Fornos = null, Empacotadores = null;
             P = geraPedido(tempo);
 
-                // Montagem do pedido
-                while (Montadores.temUnidadeDeProcessamentoLivre()) {
-                    Montadores.RetiraPedidoDaFilaDeProcessamento();
+            // Montagem do pedido
+            while (Montadores.temUnidadeDeProcessamentoLivre()) {
+                Montadores.RetiraPedidoDaFilaDeProcessamento();
 
-                    Montadores.AtribuiPedidoAoProcessadorLivre(P);
-                }
+                Montadores.AtribuiPedidoAoProcessadorLivre(P);
+            }
 
-                while (Montadores.temProcessamentoFinalizado(tempo)) {
-                    P = Montadores.ConcluiProcessamento();
+            while (Montadores.temProcessamentoFinalizado(tempo)) {
+                P = Montadores.ConcluiProcessamento();
 
-                    Fornos.ColocaNaFilaDeProcessamento(P);
-                }
+                Fornos.ColocaNaFilaDeProcessamento(P);
+            }
 
-                // Cozimento do pedido
-                while (Fornos.temUnidadeDeProcessamentoLivre()) // Montado??
-                {
-                    Fornos.RetiraPedidoDaFilaDeProcessamento();
+            // Cozimento do pedido
+            while (Fornos.temUnidadeDeProcessamentoLivre()) // Montado??
+            {
+                Fornos.RetiraPedidoDaFilaDeProcessamento();
 
-                    Fornos.AtribuiPedidoAoProcessadorLivre(P);
-                }
+                Fornos.AtribuiPedidoAoProcessadorLivre(P);
+            }
 
-                while (Fornos.temProcessamentoFinalizado(tempo)) // Assado??
-                {
-                    P = Fornos.ConcluiProcessamento();
+            while (Fornos.temProcessamentoFinalizado(tempo)) // Assado??
+            {
+                P = Fornos.ConcluiProcessamento();
 
-                    Empacotadores.ColocaNaFilaDeProcessamento(P);
-                }
+                Empacotadores.ColocaNaFilaDeProcessamento(P);
+            }
 
-                // Empacotamento do pedido
-                while (Empacotadores.temUnidadeDeProcessamentoLivre()) {
-                    Empacotadores.RetiraPedidoDaFilaDeProcessamento();
+            // Empacotamento do pedido
+            while (Empacotadores.temUnidadeDeProcessamentoLivre()) {
+                Empacotadores.RetiraPedidoDaFilaDeProcessamento();
 
-                    Empacotadores.AtribuiPedidoAoProcessadorLivre(P);
-                }
+                Empacotadores.AtribuiPedidoAoProcessadorLivre(P);
+            }
 
-                while (Empacotadores.temProcessamentoFinalizado(tempo)) // Empacotado??
-                {
-                    P = Empacotadores.ConcluiProcessamento();
+            while (Empacotadores.temProcessamentoFinalizado(tempo)) // Empacotado??
+            {
+                P = Empacotadores.ConcluiProcessamento();
 
-                    P.imprime(); // relatorio sobre o pedido
-                    // Aqui, deve coletar estatíticas sobre o pedido
-                }
+                P.imprime(); // relatorio sobre o pedido
+                // Aqui, deve coletar estatíticas sobre o pedido
+            }
             tempo++;
         }
         while (tempo < 8 * 60);// 8 horas, 60 minutos
         return 0;
     }
 
-    public static Pedido geraPedido(int tempo){
-        return null;
+    private static Pedido geraPedido(int tempo) {
+        numeroDePedidos += num;
+        int tempoGasto = Pedido.getTempoGastoEmProcessamento();
+        int tempoNecessario = Pedido.getTempoNecessarioAoProcessamento();
+        int qntddPizzas = Pedido.getQntdPizzas();
+        int qntddPasteis = Pedido.getQntdPasteis();
+        int horaDoPedido = Pedido.getHoraDoPedido();
+        Pedido pedidoCriado = null;
+
+        Random chance = new Random();
+        double chanceInt = Math.round(chance.nextDouble()*100);
+        System.out.println("NUMERO SORTEADO = " + chanceInt);
+        if(99.0 >= chanceInt && chanceInt >= 80.0){
+            System.out.println("RETORNO VERDADEIRO");
+            Pedido p = new Pedido(tempoGasto, tempoNecessario, numeroDePedidos, qntddPizzas, qntddPasteis, horaDoPedido);
+            pedidoCriado = p;
+        }else{System.out.println("RETORNO FALSO");
+            geraPedido(tempo);
+        }
+        return pedidoCriado;
     }
-
-
-
-
 }
 
 
@@ -136,22 +155,7 @@ public class Main {
     Não apagados para fins de consultas futuras.
 
 
-    public static boolean verificaSeTemPedido(){
-        boolean temPedido = false;
 
-        Random chance = new Random();
-
-        double chanceInt = Math.round(chance.nextDouble()*100);
-
-        System.out.println("NUMERO SORTEADO = " + chanceInt);
-
-        if(99.0 >= chanceInt && chanceInt >= 80.0){
-            System.out.println("RETORNO VERDADEIRO");
-            return temPedido;
-        }else{System.out.println("RETORNO FALSO");
-            return !temPedido;
-        }
-    }
     public static void criaPedidos(int[] filaDePedidos, int cont,int n) {
         int j = 0;
             while (j <= n) {

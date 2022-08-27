@@ -1,4 +1,8 @@
 public class UnidadeDeProcessamento {
+    Pedido P;
+    public UnidadeDeProcessamento(Pedido P){
+        this.P = P;
+    }
 
 
     public static void ColocaNaFilaDeProcessamento(Pedido P){
@@ -24,5 +28,6 @@ public class UnidadeDeProcessamento {
     public static Pedido ConcluiProcessamento(){
         return null;
     }
+
 
 }
