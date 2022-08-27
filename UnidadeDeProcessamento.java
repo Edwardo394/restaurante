@@ -1,7 +1,9 @@
 public class UnidadeDeProcessamento {
-    Pedido P;
-    public UnidadeDeProcessamento(Pedido P){
-        this.P = P;
+    private int tempoPizza;
+    private int tempoPastel;
+    public UnidadeDeProcessamento(int tempoPizza, int tempoPastel){
+        this.tempoPastel=tempoPastel;
+        this.tempoPizza = tempoPizza;
     }
 
 

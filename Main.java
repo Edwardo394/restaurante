@@ -11,10 +11,18 @@ public class Main {
 
     public static int controle() {
         int tempo = 0;
+        Pedido P = null;
+        int tempoMontadorPizza = 3 * Pedido.getQntdPizzas();
+        int tempoMontadorPastel = 1 * Pedido.getQntdPasteis();
+        int tempoCozimentoPizza = 4 * Pedido.getQntdPizzas();
+        int tempoCozimentoPastel = 2 * Pedido.getQntdPasteis();
+        int tempoEmpacotamentoPizza = 1 * Pedido.getQntdPizzas();
+        int tempoEmpacotamentoPastel = 1 * Pedido.getQntdPasteis();
+
+        UnidadeDeProcessamento Montadores = new UnidadeDeProcessamento(tempoMontadorPizza, tempoMontadorPastel);
+        UnidadeDeProcessamento Fornos = new UnidadeDeProcessamento(tempoCozimentoPizza, tempoCozimentoPastel);
+        UnidadeDeProcessamento Empacotadores = new UnidadeDeProcessamento(tempoEmpacotamentoPizza, tempoEmpacotamentoPastel);
         do {
-            Pedido P = null;
-            UnidadeDeProcessamento Montadores = new UnidadeDeProcessamento(P);
-            UnidadeDeProcessamento Fornos = null, Empacotadores = null;
             P = geraPedido(tempo);
 
             // Montagem do pedido
